@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "prosemirror": "^0.11.1",
     "prosemirror-example-setup": "^1.2.1",
+    "prosemirror-find-replace": "^0.9.0",
     "prosemirror-model": "^1.18.1",
     "prosemirror-schema-basic": "^1.2.0",
     "prosemirror-state": "^1.4.1",
