@@ -33,7 +33,7 @@ let view = new EditorView(editor, {
     plugins: exampleSetup({ schema: mySchema })
   })
 })
-
+//Replace
 let search = document.querySelector('#search') as HTMLInputElement;
 let replace = document.querySelector('#replace') as HTMLInputElement;
 document.getElementById('go')?.addEventListener('click', () => {
@@ -45,18 +45,9 @@ document.getElementById('go')?.addEventListener('click', () => {
   }))
 })
 
-let pm = new ProseMirror({
-  place: document.querySelector("#target"),
-  find: {}
-})
+//Find function 
 
-defineOption("find", false, (pm, value) => {
-  if (pm.mod.find) {
-    pm.mod.find.detach()
-    pm.mod.find = null
-  }
-  if (value) {
-    pm.mod.find = new Find(pm, value)
-  }
-})
-
+let find = document.querySelector("Find") as HTMLInputElement;
+ 
+//idea make a find, than if find is in document highlight it
+//also create a box similar to find-replace
