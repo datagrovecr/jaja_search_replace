@@ -8,9 +8,7 @@ import './index.css'
 //     <App />
 //   </React.StrictMode>
 // )
-//new imports
-import "prosemirror-find-replace"
-//end of new imports
+
 import { EditorState } from "prosemirror-state"
 import { EditorView } from "prosemirror-view"
 import { Schema, DOMParser, DOMSerializer } from "prosemirror-model"
@@ -47,7 +45,17 @@ document.getElementById('go')?.addEventListener('click', () => {
 
 //Find function 
 
-let find = document.querySelector("Find") as HTMLInputElement;
+let find = document.querySelector("#find") as HTMLInputElement;
+document.getElementById('go2')?.addEventListener('click', () => {
+  let s = editor.querySelector(".ProseMirror")!.innerHTML
+  if (s.includes(find.value)){
+    content.innerHTML = find.value
+  }
+  view.updateState(EditorState.create({
+    doc: DOMParser.fromSchema(mySchema).parse(content),
+    plugins: exampleSetup({ schema: mySchema })
+  }))
+})
  
 //idea make a find, than if find is in document highlight it
 //also create a box similar to find-replace
