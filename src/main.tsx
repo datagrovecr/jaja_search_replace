@@ -43,19 +43,36 @@ document.getElementById('go')?.addEventListener('click', () => {
   }))
 })
 
-//Find function 
-
+//Find and highlight function 
+/*
 let find = document.querySelector("#find") as HTMLInputElement;
 document.getElementById('go2')?.addEventListener('click', () => {
   let s = editor.querySelector(".ProseMirror")!.innerHTML
   if (s.includes(find.value)){
-    content.innerHTML = find.value
+    content.innerHTML = find.value //+ add highlight 
   }
   view.updateState(EditorState.create({
     doc: DOMParser.fromSchema(mySchema).parse(content),
     plugins: exampleSetup({ schema: mySchema })
   }))
 })
+*/
+
+//new find to test
+let find = document.querySelector('#find') as HTMLInputElement;
+let nuevo = "";
+document.getElementById('go2')?.addEventListener('click', () => {
+  let s = editor.querySelector(".ProseMirror")!.innerHTML
+  if(s.includes(find.value)){
+    nuevo = find.value
+    //nuevo = nuevo.bold() // se ve en negrita
+    nuevo = nuevo.toUpperCase()
+  }
+  content.innerHTML = s.replaceAll(find.value, nuevo)
+  view.updateState(EditorState.create({
+    doc: DOMParser.fromSchema(mySchema).parse(content),
+    plugins: exampleSetup({ schema: mySchema })
+  }))
+})
  
-//idea make a find, than if find is in document highlight it
-//also create a box similar to find-replace
+//current issue, it deletes the written text and displays the word that was input as long as the word is in the text.
