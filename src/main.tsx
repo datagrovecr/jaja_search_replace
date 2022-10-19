@@ -65,8 +65,8 @@ document.getElementById('go2')?.addEventListener('click', () => {
   let s = editor.querySelector(".ProseMirror")!.innerHTML
   if(s.includes(find.value)){
     nuevo = find.value
-    //nuevo = nuevo.bold() // se ve en negrita
-    nuevo = nuevo.toUpperCase()
+    //nuevo = nuevo.bold() // bold
+    nuevo = nuevo.toUpperCase() //sets found word to upper case 
   }
   content.innerHTML = s.replaceAll(find.value, nuevo)
   view.updateState(EditorState.create({
