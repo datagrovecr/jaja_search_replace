@@ -75,4 +75,15 @@ document.getElementById('go2')?.addEventListener('click', () => {
   }))
 })
  
-//current issue, it deletes the written text and displays the word that was input as long as the word is in the text.
+//prosemirror linting
+//import {Decoration, DecorationSet} from "prosemirror-view"
+
+// function lintDeco(document) {
+//   let decorations = []
+//   lint(document).forEach(prob => {
+//     decorations.push(Decoration.inline(prob.from, prob.to, {class: "problem"}),
+//                Decoration.widget(prob.from, lintIcon(prob)))
+//   })
+//   return DecorationSet.create(document, decorations)
+// }
+

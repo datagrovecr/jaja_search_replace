@@ -11,3 +11,4 @@
 
 ## Issues 
 - Higlighting the word found 
+- Incorporating lint highlight 
