@@ -11,7 +11,7 @@ import './index.css'
 
 import { EditorState } from "prosemirror-state"
 import { EditorView } from "prosemirror-view"
-import { Schema, DOMParser, DOMSerializer } from "prosemirror-model"
+import { Schema, DOMParser, DOMSerializer, Fragment, Node, NodeType  } from "prosemirror-model"
 import { schema } from "prosemirror-schema-basic"
 import { addListNodes } from "prosemirror-schema-list"
 import { exampleSetup } from "prosemirror-example-setup"
@@ -88,6 +88,8 @@ document.getElementById('go2')?.addEventListener('click', () => {
 // }
 
 //linter code
+//import {Fragment, Node, NodeType } from "prosemirror-model"
+
 // lint{
 // Words you probably shouldn't use
 const badWords = /\b(obviously|clearly|evidently|simply)\b/ig
@@ -95,9 +97,9 @@ const badWords = /\b(obviously|clearly|evidently|simply)\b/ig
 const badPunc = / ([,\.!?:]) ?/g
 
 function lint(document: Node) {
-  let result = [], lastHeadLevel = null
+  let result: { msg: String; from: number; to: number; fix: Function }[] = [], lastHeadLevel: number | null = null
 
-  function record(msg, from, to, fix) {
+  function record(msg: String, from: number, to: number, fix: Function) {
     result.push({msg, from, to, fix})
   }
 
@@ -106,7 +108,9 @@ function lint(document: Node) {
     if (node.isText) {
       // Scan text nodes for suspicious patterns
       let m
-      while (m = badWords.exec(node.text))
+      
+      while (m = badWords.exec(node.text!))
+     
         record(`Try not to say '${m[0]}'`,
                pos + m.index, pos + m.index + m[0].length)
       while (m = badPunc.exec(node.text))
