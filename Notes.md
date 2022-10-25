@@ -7,8 +7,11 @@
 
 ## Progress
 - Visual change to the word(s) found with **bold** or all uppercase letters
+- added linter code
+
 
 
 ## Issues 
 - Higlighting the word found 
 - Incorporating lint highlight 
+- turning linter code from javascript to typescript
