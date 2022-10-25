@@ -94,7 +94,7 @@ const badWords = /\b(obviously|clearly|evidently|simply)\b/ig
 // Matches punctuation with a space before it
 const badPunc = / ([,\.!?:]) ?/g
 
-function lint(document: Document) {
+function lint(document: Node) {
   let result = [], lastHeadLevel = null
 
   function record(msg, from, to, fix) {
@@ -102,7 +102,7 @@ function lint(document: Document) {
   }
 
   // For each node in the document
-  doc.descendants((node, pos) => {
+  document.descendants((node, pos) => {
     if (node.isText) {
       // Scan text nodes for suspicious patterns
       let m
