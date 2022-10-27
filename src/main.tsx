@@ -112,8 +112,8 @@ function lint(document: Node) {
       while (m = badWords.exec(node.text!))
      
         record(`Try not to say '${m[0]}'`,
-               pos + m.index, pos + m.index + m[0].length)
-      while (m = badPunc.exec(node.text))
+               pos + m.index, pos + m.index + m[0].length, fixPunc)
+      while (m = badPunc.exec(node.text!))
         record("Suspicious spacing around punctuation",
                pos + m.index, pos + m.index + m[0].length,
                fixPunc(m[1] + " "))
@@ -136,14 +136,14 @@ function lint(document: Node) {
 // }
 
 // fix{
-function fixPunc(replacement) {
+function fixPunc(replacement: any) {
   return function({state, dispatch}) {
     dispatch(state.tr.replaceWith(this.from, this.to,
                                   state.schema.text(replacement)))
   }
 }
 
-function fixHeader(level) {
+function fixHeader(level:number) {
   return function({state, dispatch}) {
     dispatch(state.tr.setNodeMarkup(this.from - 1, null, {level}))
   }
@@ -161,7 +161,7 @@ function addAlt({state, dispatch}) {
 // deco{
 import {Decoration, DecorationSet} from "prosemirror-view"
 
-function lintDeco(doc) {
+function lintDeco(doc: any) {
   let decos = []
   lint(doc).forEach(prob => {
     decos.push(Decoration.inline(prob.from, prob.to, {class: "problem"}),
@@ -170,7 +170,7 @@ function lintDeco(doc) {
   return DecorationSet.create(doc, decos)
 }
 
-function lintIcon(prob) {
+function lintIcon(prob: any) {
   let icon = document.createElement("div")
   icon.className = "lint-icon"
   icon.title = prob.msg
@@ -217,7 +217,7 @@ let lintPlugin = new Plugin({
 
 
 let state = EditorState.create({
-  doc: DOMParser.fromSchema(schema).parse(document.querySelector("#content")),
+  doc: DOMParser.fromSchema(schema).parse(document.querySelector("#content")!),
   plugins: exampleSetup({schema}).concat(lintPlugin)
 })
 
