@@ -55,3 +55,4 @@ function searchDeco(doc: Node) { //helps with highlight
     return icon
   }
 
+  

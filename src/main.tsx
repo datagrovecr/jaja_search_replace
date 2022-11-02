@@ -5,7 +5,7 @@ import './index.css'
 import "prosemirror-image-plugin/dist/styles/common.css";
 import "prosemirror-image-plugin/dist/styles/withResize.css";
 import "prosemirror-image-plugin/dist/styles/sideResize.css";
-import { lintDeco } from './lint';
+import { lintDeco } from './lint'; //highlight function
 
 // ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 //   <React.StrictMode>
@@ -62,16 +62,16 @@ document.getElementById('go2')?.addEventListener('click', () => {
 */
 
 //new find 
-function newFind (doc: Node) {
+export function newFind (doc: Node) {
   let find = document.querySelector('#find') as HTMLInputElement;
 let nuevo = "";
 document.getElementById('go2')?.addEventListener('click', () => {
   let s = editor.querySelector(".ProseMirror")!.innerHTML
   if(s.includes(find.value)){
     nuevo = find.value
-    //nuevo = nuevo.bold() // bold
+    nuevo = nuevo.bold() // bold
     //nuevo = nuevo.toUpperCase() //sets found word to upper case 
-    lintDeco(nuevo)
+    
   }
   content.innerHTML = s.replaceAll(find.value, nuevo)
   view.updateState(EditorState.create({
@@ -81,11 +81,5 @@ document.getElementById('go2')?.addEventListener('click', () => {
 })
 }
 
-// editor{
-// let state = EditorState.create({
-//   doc: DOMParser.fromSchema(schema).parse(document.querySelector("#content")!),
-//   plugins: exampleSetup({schema}).concat(lintPlugin)
-// })
 
-// window.view = new EditorView(document.querySelector("#editor"), {state})
-// }
+  
