@@ -14,4 +14,9 @@
 ## Issues 
 - Higlighting the word found 
 - Incorporating lint highlight 
-- turning linter code from javascript to typescript
+- Mxing the linter with code
+- Triggering transactions that update the state
+
+
+## Ideas
+- Put find code inside a function and call linter when word is found.
