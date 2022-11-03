@@ -1,11 +1,11 @@
 import { Schema, NodeSpec, Node } from "prosemirror-model"
 import { EditorState } from "prosemirror-state"
-import { mySchema } from "./schema"
+
 import { Dropdown, DropdownSubmenu, IconSpec, MenuElement, MenuItem, MenuItemSpec, blockTypeItem, icons, joinUpItem, liftItem, menuBar, redoItem, renderGrouped, selectParentNodeItem, undoItem, wrapItem } from "prosemirror-menu"
 import {buildInputRules, buildKeymap, buildMenuItems, exampleSetup } from "prosemirror-example-setup"
 import { Transaction } from "prosemirror-state"
-import { Command, Plugin } from 'prosemirror-state';
-
+import { Command, Plugin } from 'prosemirror-state'
+import {schema} from "prosemirror-schema-basic"
 
 
 
@@ -42,10 +42,14 @@ export const dinoNodeSpec: NodeSpec = {
         }]
     }
 
-let dinoType = mySchema.nodes.dino
 
+export const dinoSchema = new Schema({
+  nodes: schema.spec.nodes.addBefore("image","dino",dinoNodeSpec),
+  marks: schema.spec.marks
+}) 
+const dinoType = dinoSchema.nodes.dino;
 function insertDino(type: string) {
-  return function(state:EditorState, dispatch: (tr: Transaction) => void) {
+  return function(state:EditorState, dispatch: null|((tr: Transaction) => void)) {
     let {$from} = state.selection, index = $from.index()
     if (!$from.parent.canReplaceWith(index, index, dinoType))
       return false
@@ -56,14 +60,8 @@ function insertDino(type: string) {
 }
 
 // // Ask example-setup to build its basic menu
-let menu = buildMenuItems(mySchema)
-// // Add a dino-inserting item for each type of dino
-// dinos.forEach(name => menu.insertMenu.content.push(new MenuItem({
-//   title: "Insert " + name,
-//   label: name.charAt(0).toUpperCase() + name.slice(1),
-//   enable(state) { return insertDino(name)(state) },
-//   run: insertDino(name)
-// })))
+var menu = buildMenuItems(dinoSchema)
+
 
 //menu 2.0
 let m = menu.insertMenu as Dropdown2;
@@ -78,4 +76,4 @@ interface Dropdown2 extends Dropdown {
   content: MenuElement[]
   fullMenu: MenuItem[][];
 }
-export {m, menu}
+export const dinoMenu = menu.fullMenu as MenuItem[][]
