@@ -56,7 +56,7 @@ function insertDino(type: string) {
 }
 
 // // Ask example-setup to build its basic menu
- export let menu = buildMenuItems(mySchema)
+let menu = buildMenuItems(mySchema)
 // // Add a dino-inserting item for each type of dino
 // dinos.forEach(name => menu.insertMenu.content.push(new MenuItem({
 //   title: "Insert " + name,
@@ -76,4 +76,6 @@ dinos.forEach(name => m.content.push(new MenuItem({
 
 interface Dropdown2 extends Dropdown {
   content: MenuElement[]
+  fullMenu: MenuItem[][];
 }
+export {m, menu}

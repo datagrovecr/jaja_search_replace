@@ -8,6 +8,7 @@
 ## Progress
 - Visual change to the word(s) found with **bold** or all uppercase letters
 - added linter code
+- Dinos example, helps with state change
 
 
 
@@ -16,6 +17,7 @@
 - Incorporating lint highlight 
 - Mxing the linter with code
 - Triggering transactions that update the state
+- Dropdown menu issues, javascript issue
 
 
 ## Ideas
