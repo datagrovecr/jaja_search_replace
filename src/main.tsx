@@ -6,6 +6,7 @@ import "prosemirror-image-plugin/dist/styles/common.css";
 import "prosemirror-image-plugin/dist/styles/withResize.css";
 import "prosemirror-image-plugin/dist/styles/sideResize.css";
 
+
 import {dinoMenu, dinoSchema} from "./dinosExample"
 // ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 //   <React.StrictMode>
@@ -14,7 +15,7 @@ import {dinoMenu, dinoSchema} from "./dinosExample"
 // )
 import { EditorState, Transaction } from "prosemirror-state"
 import { EditorView } from "prosemirror-view"
-import { DOMParser } from "prosemirror-model"
+import { DOMParser, Schema } from "prosemirror-model"
 import { exampleSetup } from "prosemirror-example-setup"
 import {initialDoc } from "./schema"
 //import {CodeBlockView,arrowHandlers} from "./codemirror"
@@ -48,7 +49,6 @@ let view = new EditorView(editor, {
         schema: sch,
         menuContent: dinoMenu
        }),
-      //.concat(arrowHandlers),
       imagePlugin(sch, { ...defaultSettings }),
       lintPlugin,
       //searchReplacePlugin2
@@ -94,8 +94,8 @@ document.getElementById('go2')?.addEventListener('click', () => {
   }
   content.innerHTML = s.replaceAll(find.value, nuevo)
   view.updateState(EditorState.create({
-    doc: DOMParser.fromSchema(mySchema).parse(content),
-    plugins: exampleSetup({ schema: mySchema })
+    doc: DOMParser.fromSchema(dinoSchema).parse(content),
+    plugins: exampleSetup({schema: dinoSchema})
   }))
 })
 }
