@@ -21,6 +21,7 @@ import {initialDoc } from "./schema"
 //import {CodeBlockView,arrowHandlers} from "./codemirror"
 import { defaultSettings, updateImageNode, imagePlugin } from "prosemirror-image-plugin"
 import { lintPlugin } from './lint';
+import { findReplace } from './FindReplaceV2';
 
 const sch = dinoSchema
 const doc =  {
@@ -58,6 +59,24 @@ let view = new EditorView(editor, {
 })
 
 
+
+// document.getElementById('go')?.addEventListener('click', () => {
+//   let s = editor.querySelector(".ProseMirror")!.innerHTML
+//   content.innerHTML = s.replaceAll(search.value, replace.value)
+//   view.updateState(EditorState.create({
+//     doc: DOMParser.fromSchema(dinoSchema).parse(content),
+//     plugins: exampleSetup({ schema: dinoSchema })
+//   }))
+// })
+
+
+// document.getElementById('search')?.addEventListener('change', () => {
+//   return function (state: EditorState, dispatch){
+//     let {$from} = state.selection, index = $from.index()
+//     dispatch(state.tr.replaceSelectionWith(view.document.create()))
+//   })
+// }
+
 let search = document.querySelector('#search') as HTMLInputElement;
 let replace = document.querySelector('#replace') as HTMLInputElement;
 
@@ -81,24 +100,24 @@ document.getElementById('search')?.addEventListener('change', () => {
 */
 
 //new find 
-export function newFind (doc: Node) {
-  let find = document.querySelector('#find') as HTMLInputElement;
-let nuevo = "";
-document.getElementById('go2')?.addEventListener('click', () => {
-  let s = editor.querySelector(".ProseMirror")!.innerHTML
-  if(s.includes(find.value)){
-    nuevo = find.value
-    nuevo = nuevo.bold() // bold
-    //nuevo = nuevo.toUpperCase() //sets found word to upper case 
+// export function newFind (doc: Node) {
+//   let find = document.querySelector('#find') as HTMLInputElement;
+// let nuevo = "";
+// document.getElementById('go2')?.addEventListener('click', () => {
+//   let s = editor.querySelector(".ProseMirror")!.innerHTML
+//   if(s.includes(find.value)){
+//     nuevo = find.value
+//     nuevo = nuevo.bold() // bold
+//     //nuevo = nuevo.toUpperCase() //sets found word to upper case 
     
-  }
-  content.innerHTML = s.replaceAll(find.value, nuevo)
-  view.updateState(EditorState.create({
-    doc: DOMParser.fromSchema(dinoSchema).parse(content),
-    plugins: exampleSetup({schema: dinoSchema})
-  }))
-})
-}
+//   }
+//   content.innerHTML = s.replaceAll(find.value, nuevo)
+//   view.updateState(EditorState.create({
+//     doc: DOMParser.fromSchema(dinoSchema).parse(content),
+//     plugins: exampleSetup({schema: dinoSchema})
+//   }))
+// })
+// }
 
 
   

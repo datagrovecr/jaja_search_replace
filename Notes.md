@@ -21,4 +21,4 @@
 
 
 ## Ideas
-- Put find code inside a function and call linter when word is found.
+- Use existing functions to create basic search and replace.

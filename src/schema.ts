@@ -7,7 +7,7 @@ import OrderedMap from "orderedmap";
 if (!(schema.spec.nodes instanceof OrderedMap))
 throw new Error("Incorrect schema type");
 
-export const initialDoc = {
+export var initialDoc = {
   content: [
   {
     content: [
