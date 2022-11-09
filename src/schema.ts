@@ -7,12 +7,12 @@ import OrderedMap from "orderedmap";
 if (!(schema.spec.nodes instanceof OrderedMap))
 throw new Error("Incorrect schema type");
 
-export var initialDoc = {
+ const initialDoc = {
   content: [
   {
     content: [
       {
-        text: "This is a sample hello, where I'm going to test hello if certain words are hello changed to bold",
+        text: "Start typing!",
         type: "text",
       },
     ],
