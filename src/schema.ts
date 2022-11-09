@@ -12,7 +12,7 @@ export var initialDoc = {
   {
     content: [
       {
-        text: "Start typing!",
+        text: "This is a sample hello, where I'm going to test hello if certain words are hello changed to bold",
         type: "text",
       },
     ],
