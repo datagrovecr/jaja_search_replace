@@ -30,7 +30,7 @@ class Match {
 function search(s: string, p: SearchData): Match[] {
   if (!p.searchPattern)
     return []
-  const r: Match[] = []
+  let r: Match[] = []
   const sp = p.matchCase?p.searchPattern:p.searchPattern.toLowerCase()
   const xx = p.matchCase?s:s.toLowerCase()
   let idx  = xx.indexOf(sp)
@@ -40,7 +40,11 @@ function search(s: string, p: SearchData): Match[] {
     idx = s.indexOf(p.searchPattern, idx + 1);
   }
   return r
+  function replace(s: String, p: SearchData){
+    r.replace
+  }
 }
+
 
 // this should probably be in prose-mirror, it's a common structure passed to functions
 interface Dispatch {
@@ -242,5 +246,12 @@ export function searchCommand(s: string): Command {
       dispatch(state.tr.setMeta(pluginKey,newSearch))
     }
     return true
+  }
+}
+//build replace command
+export function replaceCommand(s:String):Command{
+  return (state:EditorState, dispatch)=> {
+    let sd = pluginKey.getState(state)
+    if (sd.)
   }
 }
